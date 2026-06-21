@@ -1,4 +1,5 @@
 app: brave
+
 ingredients:
   package: https://github.com/brave/brave-browser/releases/download/v1.91.175/brave-browser_1.91.175_amd64.deb
   dist: stable
@@ -6,4 +7,10 @@ ingredients:
     - none
 
 script:
-  
+  - # Extract the layout contents first
+  - cp -r opt/://brave.com* usr/bin/ || true
+  - # Manually structure the desktop file and application shortcut links
+  - mkdir -p usr/share/applications/
+  - mkdir -p usr/share/icons/hicolor/128x128/apps/
+  - cp opt/://brave.combrave-browser.desktop usr/share/applications/brave.desktop || true
+  - cp opt/://brave.comproduct_logo_128.png usr/share/icons/hicolor/128x128/apps/brave.png || true
