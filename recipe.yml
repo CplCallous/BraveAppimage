@@ -5,11 +5,3 @@ ingredients:
   dist: stable
   status:
     - none
-
-script:
-  - # Extract and copy the custom layout paths out of the opt directory
-  - cp -r opt/://brave.com* usr/bin/ || true
-  - mkdir -p usr/share/applications/
-  - mkdir -p usr/share/icons/hicolor/128x128/apps/
-  - cp opt/://brave.combrave-browser.desktop usr/share/applications/brave.desktop || true
-  - cp opt/://brave.comproduct_logo_128.png usr/share/icons/hicolor/128x128/apps/brave.png || true
