@@ -1,0 +1,32 @@
+name: Build AppImage
+
+on:
+  workflow_dispatch: # Allows you to run this manually with a button click
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y imagemagick file desktop-file-validate
+
+    - name: Download pkg2appimage
+      run: |
+        wget -c https://github.com
+        chmod +x pkg2appimage-1eceb30-x86_64.AppImage
+
+    - name: Build AppImage
+      run: |
+        ./pkg2appimage-1eceb30-x86_64.AppImage recipe.yml
+
+    - name: Upload Finished AppImage
+      uses: actions/upload-artifact@v4
+      with:
+        name: Finished-AppImage
+        path: out/*.AppImage
