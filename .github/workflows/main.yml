@@ -26,24 +26,16 @@ jobs:
 
     - name: Build AppImage
       run: |
-        # 1. Download the Brave browser deb package locally
         wget -c "https://github.com" -O brave.deb
-        
-        # 2. Pre-create the directory structure that pkg2appimage expects
         mkdir -p brave.AppDir/usr/bin
         mkdir -p brave.AppDir/usr/share/applications
         mkdir -p brave.AppDir/usr/share/icons/hicolor/128x128/apps
-        
-        # 3. Extract the deb file layout manually
         dpkg-deb -x brave.deb brave.AppDir/
-        
-        # 4. Safely relocate Brave's binary assets to the standard paths
         cp -r brave.AppDir/opt/://brave.com* brave.AppDir/usr/bin/ || true
         cp brave.AppDir/opt/://brave.combrave-browser.desktop brave.AppDir/usr/share/applications/brave.desktop || true
         cp brave.AppDir/opt/://brave.comproduct_logo_128.png brave.AppDir/usr/share/icons/hicolor/128x128/apps/brave.png || true
-        
-        # 5. Execute pkg2appimage against the pre-configured directory profile
         ./pkg2appimage-1eceb30-x86_64.AppImage --appimage-extract-and-run recipe.yml
+
 
 
     - name: Upload Finished AppImage
