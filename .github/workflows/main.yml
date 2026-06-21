@@ -26,7 +26,8 @@ jobs:
 
     - name: Build AppImage
       run: |
-        wget -c "https://github.com" -O brave.deb
+        URL="https://github.com"
+        wget -c "$URL" -O brave.deb
         mkdir -p brave.AppDir/usr/bin
         mkdir -p brave.AppDir/usr/share/applications
         mkdir -p brave.AppDir/usr/share/icons/hicolor/128x128/apps
@@ -35,6 +36,7 @@ jobs:
         cp brave.AppDir/opt/://brave.combrave-browser.desktop brave.AppDir/usr/share/applications/brave.desktop || true
         cp brave.AppDir/opt/://brave.comproduct_logo_128.png brave.AppDir/usr/share/icons/hicolor/128x128/apps/brave.png || true
         ./pkg2appimage-1eceb30-x86_64.AppImage --appimage-extract-and-run recipe.yml
+
 
 
 
