@@ -16,7 +16,8 @@ jobs:
         sudo rm -rf /var/lib/apt/lists/*
         sudo apt-get clean
         sudo apt-get update --fix-missing
-        sudo apt-get install -y -f imagemagick file desktop-file-validate
+        sudo apt-get install -y imagemagick file desktop-file-utils
+
 
     - name: Download pkg2appimage
       run: |
