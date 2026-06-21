@@ -26,6 +26,10 @@ jobs:
 
     - name: Build AppImage
       run: |
+        # Explicitly download the large deb file locally into the current workspace folder
+        wget -c "https://github.com/brave/brave-browser/releases/download/v1.91.175/brave-browser_1.91.175_amd64.deb" -O brave.deb
+        
+        # Run the build tool pointing to our standardized local package
         ./pkg2appimage-1eceb30-x86_64.AppImage --appimage-extract-and-run recipe.yml
 
     - name: Upload Finished AppImage
